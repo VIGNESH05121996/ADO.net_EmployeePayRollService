@@ -1,0 +1,8 @@
+./
+../
+.vs/
+.git/
+obj/
+bin/
+bin/Debug/
+ADO.netEmployeePayRollService/ 
