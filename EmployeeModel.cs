@@ -11,6 +11,7 @@ namespace ADO.netEmployeePayRollService
         public int EmployeeID { get; set; }
         public string EmployeeName { get; set; }
         public double PhoneNumber { get; set; }
+        public double Salary { get; set; }
         public string Address { get; set; }
         public string Department { get; set; }
         public string Gender { get; set; }
