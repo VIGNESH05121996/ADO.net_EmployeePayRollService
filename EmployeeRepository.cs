@@ -58,5 +58,41 @@ namespace ADO.netEmployeePayRollService
                 this.sqlConnection.Close();
             }
         }
+
+        //Add salary i.e basepay of Terrisa
+        public void AddEmployeeSalary(EmployeeModel model)
+        {
+            try
+            {
+                using (this.sqlConnection)
+                {
+                    SqlCommand command = new SqlCommand("dbo.spAddEmployeeDetails", this.sqlConnection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@name", model.EmployeeName);
+                    command.Parameters.AddWithValue("@Basic_pay", model.BasicPay);
+                    command.Parameters.AddWithValue("@startDate", model.StartDate);
+                    command.Parameters.AddWithValue("@Gender", model.Gender);
+                    sqlConnection.Open();
+                    var result = command.ExecuteNonQuery();
+                    if(result==0)
+                    {
+                        Console.WriteLine("No Data Added");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Employee Data Added");
+                    }
+                }
+            }
+
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+        }
     }
 }
