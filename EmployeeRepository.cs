@@ -94,5 +94,38 @@ namespace ADO.netEmployeePayRollService
                 sqlConnection.Close();
             }
         }
+
+        //Updata salary
+        public void UpdateSalary(EmployeeModel model)
+        {
+            try
+            {
+                using (this.sqlConnection)
+                {
+                    SqlCommand command = new SqlCommand("dbo.spUpdateEmployeeDetails", this.sqlConnection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@name", model.EmployeeName);
+                    command.Parameters.AddWithValue("@Basic_Pay", model.BasicPay);
+                    sqlConnection.Open();
+                    int result = command.ExecuteNonQuery();
+                    if(result==0)
+                    {
+                        Console.WriteLine("Updated Sucessfully");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Unsucessful");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+        }
     }
 }
